@@ -3,10 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import '/model.dart';
-import 'card_listview.dart';
+import 'CheckListview.dart';
 
-void main() {
+void main() { //sätt en await längre ner för ex get, add osv
   var state = MyState();
+  state.getList();
   runApp(
       ChangeNotifierProvider(create: (context) => state, child: const MyApp()));
 }

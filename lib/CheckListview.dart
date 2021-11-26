@@ -1,8 +1,10 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '/check_list.dart';
+import '/CheckList.dart';
 import '/model.dart';
-import 'edit_checkboxlist.dart';
+import 'SecondView.dart';
 
 class CheckBoxListView extends StatelessWidget {
   @override
@@ -37,8 +39,10 @@ class CheckBoxListView extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => SecondView(CheckBoxState(
-                        title: '',
-                      ))));
+                    title: '', 
+                    id: "", 
+                    ))));
+  
           if (newBox != null) {
             Provider.of<MyState>(context, listen: false).addBox(newBox);
           }

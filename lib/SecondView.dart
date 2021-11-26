@@ -1,3 +1,6 @@
+
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import '/model.dart';
 
@@ -78,7 +81,7 @@ class SecondViewState extends State<SecondView> {
         ElevatedButton(
             child: const Text('+ ADD'),
             onPressed: () {
-              Navigator.pop(context, CheckBoxState(title: title));
+              Navigator.pop(context, textEditingController.text);
             }),
       ],
     );
