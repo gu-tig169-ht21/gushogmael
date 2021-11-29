@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/model.dart';
@@ -20,12 +22,12 @@ class CheckList extends StatelessWidget {
         title: Text(checkbox.title,
             style: TextStyle(
                 decoration:
-                    checkbox.value ? TextDecoration.lineThrough : null)),
+                    checkbox.done ? TextDecoration.lineThrough : null)),
         onChanged: (value) {
           var state = Provider.of<MyState>(context, listen: false);
           state.setDoneCheckList(checkbox, false);
         },
-        value: checkbox.value,
+        value: checkbox.done,
         secondary: IconButton(
             icon: const Icon(Icons.clear),
             onPressed: () {

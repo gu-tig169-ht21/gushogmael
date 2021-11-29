@@ -1,3 +1,6 @@
+
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import '/model.dart';
 
@@ -13,14 +16,14 @@ class SecondView extends StatefulWidget {
 }
 
 class SecondViewState extends State<SecondView> {
-  late String title;
+  String title = 'title';
 
-  late TextEditingController textEditingController;
+  late TextEditingController textEditingController = TextEditingController();
 
   SecondViewState(CheckBoxState checkbox) {
     this.title = checkbox.title;
 
-    textEditingController = TextEditingController(text: checkbox.title);
+    //textEditingController = TextEditingController(text: checkbox.title);
 
     textEditingController.addListener(() {
       setState(() {
@@ -78,7 +81,7 @@ class SecondViewState extends State<SecondView> {
         ElevatedButton(
             child: const Text('+ ADD'),
             onPressed: () {
-              Navigator.pop(context, CheckBoxState(title: title));
+              Navigator.pop(context, CheckBoxState(title: title, id: ''));
             }),
       ],
     );
