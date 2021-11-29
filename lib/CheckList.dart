@@ -23,7 +23,7 @@ class CheckList extends StatelessWidget {
             style: TextStyle(
                 decoration:
                     checkbox.done ? TextDecoration.lineThrough : null)),
-        onChanged: (done) {
+        onChanged: (value) {
           var state = Provider.of<MyState>(context, listen: false);
           state.setDoneCheckList(checkbox, false);
         },

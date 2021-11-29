@@ -4,9 +4,9 @@ import '/Api.dart';
 import 'dart:convert';
 
 
-CheckBoxState checkBoxStateFromJson(String str) => CheckBoxState.fromJson(json.decode(str));
+//CheckBoxState checkBoxStateFromJson(String str) => CheckBoxState.fromJson(json.decode(str));
 
-String checkBoxStateToJson(CheckBoxState data) => json.encode(data.toJson());
+//String checkBoxStateToJson(CheckBoxState data) => json.encode(data.toJson());
 
 class CheckBoxState {
   String id;
@@ -22,10 +22,10 @@ class CheckBoxState {
 
   
 
-     Map<String, dynamic> toJson() {
+      static Map<String, dynamic> toJson(checkbox) {
       return {
-        'title': title,
-        'done': done,
+        'title': checkbox.title,
+        'done': checkbox.done,
       };
   }
 
@@ -34,6 +34,8 @@ class CheckBoxState {
       title: json['title'],
       done: json['done'],  
       );
+
+ 
 
   }
 
@@ -52,43 +54,34 @@ class MyState extends ChangeNotifier {
     notifyListeners();
   }
 
-   /*void addBox(CheckBoxState checkbox) async {
-     _list = await Api.addBox(checkbox);
+  void addBox(CheckBoxState checkbox) async {
+     _list = await Api.addCheckBox(checkbox);
+    notifyListeners();
+  }
+
+  /*void addBox(String title) {
+    _list.add(title);
     notifyListeners();
   }*/
-  void addBox(CheckBoxState checkbox) {
-    _list.add(checkbox);
-    notifyListeners();
-  }
 
-  void setDoneCheckList(CheckBoxState checkbox, bool done) {
+  
+  void removeBox(CheckBoxState checkbox) async {
+    _list = await Api.deleteBox(checkbox.id);
+    notifyListeners();
+    }
+  
+
+ void setDoneCheckList(CheckBoxState checkbox, bool done) async {
     checkbox.done = !checkbox.done;
+    _list = await Api.changeCheckList(checkbox, checkbox.id);
     notifyListeners();
   }
 
+  
    void setFilterBy(String filterBy) {
     this._filterBy = filterBy;
     notifyListeners();
   }
 
-  
-  void removeBox(CheckBoxState checkbox) async {
-    _list = await Api.removeBox(checkbox.id);
-    notifyListeners();
-    }
-  
-
- /*void setDoneCheckList(CheckBoxState checkbox, bool done) async {
-    checkbox.done = !checkbox.done;
-    _list = await Api.setDoneCheckList(checkbox,checkbox.id);
-    notifyListeners();
-  }*/
-
- 
-
-  /*void setFilterBy(String filterBy) {
-    this._filterBy = filterBy;
-    notifyListeners();
-  }*/
 }
 
