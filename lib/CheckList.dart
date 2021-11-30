@@ -21,8 +21,7 @@ class CheckList extends StatelessWidget {
         controlAffinity: ListTileControlAffinity.leading,
         title: Text(checkbox.title,
             style: TextStyle(
-                decoration:
-                    checkbox.done ? TextDecoration.lineThrough : null)),
+                decoration: checkbox.done ? TextDecoration.lineThrough : null)),
         onChanged: (value) {
           var state = Provider.of<MyState>(context, listen: false);
           state.setDoneCheckList(checkbox, false);
