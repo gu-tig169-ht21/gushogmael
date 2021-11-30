@@ -16,10 +16,6 @@ class SecondView extends StatefulWidget {
 
 class SecondViewState extends State<SecondView> {
   String title = '';
-  bool isLoading = true;
-
-  static final RegExp letterRegExp = RegExp('[a-zA-Z] ');
-  static final RegExp numberRegExp = RegExp('r\d');
 
   final _formKey = GlobalKey<FormState>();
 
@@ -27,8 +23,6 @@ class SecondViewState extends State<SecondView> {
 
   SecondViewState(CheckBoxState checkbox) {
     this.title = checkbox.title;
-
-    //textEditingController = TextEditingController(text: checkbox.title);
 
     textEditingController.addListener(() {
       setState(() {

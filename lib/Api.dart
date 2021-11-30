@@ -9,16 +9,17 @@ const API_URL = 'https://todoapp-api-pyq5q.ondigitalocean.app';
 
 class Api {
   //get
-  static Future<List<CheckBoxState>> getList() async {
+  static Future<List<CheckBoxState>> getCheckbox() async {
     var response = await http.get(Uri.parse('$API_URL/todos?key=$API_KEY'));
     var json = jsonDecode(response.body);
+
     return json.map<CheckBoxState>((data) {
       return CheckBoxState.fromJson(data);
     }).toList();
   }
 
   //delte
-  static Future deleteBox(String checkboxId) async {
+  static Future deleteCheckbox(String checkboxId) async {
     var response =
         await http.delete(Uri.parse('$API_URL/todos/$checkboxId?key=$API_KEY'));
     var bodyString = response.body;
@@ -29,6 +30,7 @@ class Api {
     }).toList();
   }
 
+//update
   static Future<List<CheckBoxState>> changeCheckList(
       CheckBoxState checkbox, checkboxId) async {
     Map<String, dynamic> json = CheckBoxState.toJson(checkbox);
@@ -40,13 +42,14 @@ class Api {
     );
     bodyString = response.body;
     var list = jsonDecode(bodyString);
+
     return list.map<CheckBoxState>((data) {
       return CheckBoxState.fromJson(data);
     }).toList();
   }
 
   //post
-  static Future<List<CheckBoxState>> addCheckBox(CheckBoxState checkbox) async {
+  static Future<List<CheckBoxState>> addCheckbox(CheckBoxState checkbox) async {
     Map<String, dynamic> json = CheckBoxState.toJson(checkbox);
     var bodyString = jsonEncode(json);
     var response = await http.post(

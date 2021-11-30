@@ -31,28 +31,18 @@ class MyState extends ChangeNotifier {
 
   List<CheckBoxState> get list => _list;
 
-  //bool _loading = false;
-  //bool get loading => _loading;
-
   String _filterBy = 'All';
+
   String get filterBy => _filterBy;
 
   Future getList() async {
-    //_loading = true;
-    //notifyListeners();
-    List<CheckBoxState> list = await Api.getList();
+    List<CheckBoxState> list = await Api.getCheckbox();
     _list = list;
-    //_loading = false;
-    notifyListeners();
-  }
-
-  void addBox(CheckBoxState checkbox) async {
-    _list = await Api.addCheckBox(checkbox);
     notifyListeners();
   }
 
   void removeBox(CheckBoxState checkbox) async {
-    _list = await Api.deleteBox(checkbox.id);
+    _list = await Api.deleteCheckbox(checkbox.id);
     notifyListeners();
   }
 
@@ -62,8 +52,13 @@ class MyState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addBox(CheckBoxState checkbox) async {
+    _list = await Api.addCheckbox(checkbox);
+    notifyListeners();
+  }
+
   void setFilterBy(String filterBy) {
-    this._filterBy = filterBy;
+    _filterBy = filterBy;
     notifyListeners();
   }
 }
