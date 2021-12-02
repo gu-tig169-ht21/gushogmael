@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '/CheckList.dart';
 import '/model.dart';
 import 'SecondView.dart';
@@ -39,10 +40,10 @@ class CheckBoxListView extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => SecondView(CheckBoxState(
-                    title: 'title', 
-                    id: '', 
-                    ))));
-  
+                        title: '',
+                        id: '',
+                      ))));
+
           if (newBox != null) {
             Provider.of<MyState>(context, listen: false).addBox(newBox);
           }
@@ -54,8 +55,9 @@ class CheckBoxListView extends StatelessWidget {
   List<CheckBoxState> _filterList(list, filterBy) {
     if (filterBy == "Done") {
       return list.where((checkbox) => checkbox.done == true).toList();
-    } if (filterBy == "Undone") {
-     return list.where((checkbox) => checkbox.done == false).toList();
+    }
+    if (filterBy == "Undone") {
+      return list.where((checkbox) => checkbox.done == false).toList();
     }
     return list;
   }

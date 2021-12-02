@@ -1,4 +1,3 @@
-
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
@@ -16,14 +15,14 @@ class SecondView extends StatefulWidget {
 }
 
 class SecondViewState extends State<SecondView> {
-  String title = 'title';
+  String title = '';
+
+  final _formKey = GlobalKey<FormState>();
 
   late TextEditingController textEditingController = TextEditingController();
 
   SecondViewState(CheckBoxState checkbox) {
     this.title = checkbox.title;
-
-    //textEditingController = TextEditingController(text: checkbox.title);
 
     textEditingController.addListener(() {
       setState(() {
@@ -41,7 +40,8 @@ class SecondViewState extends State<SecondView> {
           style: TextStyle(fontSize: 25),
         ),
       ),
-      body: Center(
+      body: Form(
+        key: _formKey,
         child: Column(
           children: [
             Container(
@@ -63,13 +63,19 @@ class SecondViewState extends State<SecondView> {
       alignment: Alignment.center,
       padding: const EdgeInsets.all(5.0),
       margin: const EdgeInsets.all(30.0),
-      child: TextField(
+      child: TextFormField(
         controller: textEditingController,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(width: 3.0),
             ),
             labelText: "What are you going to do?"),
+        validator: (title) {
+          if (title == null || title.isEmpty) {
+            return 'Textfield is empty, please try again!';
+          }
+          return null;
+        },
       ),
     );
   }
@@ -79,10 +85,13 @@ class SecondViewState extends State<SecondView> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
-            child: const Text('+ ADD'),
-            onPressed: () {
+          child: const Text('+ ADD'),
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {
               Navigator.pop(context, CheckBoxState(title: title, id: ''));
-            }),
+            }
+          },
+        ),
       ],
     );
   }

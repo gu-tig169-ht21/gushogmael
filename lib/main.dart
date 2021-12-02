@@ -5,9 +5,10 @@ import 'package:provider/provider.dart';
 import '/model.dart';
 import 'CheckListview.dart';
 
-void main() { //sätt en await längre ner för ex get, add osv
+void main() {
   var state = MyState();
   state.getList();
+
   runApp(
       ChangeNotifierProvider(create: (context) => state, child: const MyApp()));
 }
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primarySwatch: Colors.indigo,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: CheckBoxListView(),
